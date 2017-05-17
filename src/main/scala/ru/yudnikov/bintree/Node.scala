@@ -5,9 +5,11 @@ package ru.yudnikov.bintree
   */
 abstract class Node {
 
-  def include(x: Int): Node
+  def include(x: Int): NonEmpty
 
   def contains(x: Int): Boolean
 
-  def union(other: NonEmpty): NonEmpty
+  def merge(other: Node): Node
+  
+  def remove(x: Int): Node
 }

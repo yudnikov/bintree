@@ -7,9 +7,11 @@ object Empty extends Node {
 
   override def toString: String = "."
 
-  override def include(x: Int): Node = new NonEmpty(x)
+  override def include(x: Int): NonEmpty = new NonEmpty(x)
 
   override def contains(x: Int): Boolean = false
 
-  override def union(other: NonEmpty): NonEmpty = other
+  override def merge(other: Node): Node = other
+  
+  override def remove(x: Int): Node = this
 }
