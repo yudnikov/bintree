@@ -1,5 +1,7 @@
 package ru.yudnikov.bintree
 
+import BinTreeApp._
+
 /**
   * Created by igor.yudnikov on 17-May-17.
   */
@@ -17,5 +19,3 @@ class Empty[T] extends Node[T] {
   
   override def filter(f: (T) => Boolean): Node[T] = this
 }
-
-object Empty

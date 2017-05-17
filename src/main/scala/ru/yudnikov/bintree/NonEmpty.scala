@@ -4,7 +4,7 @@ package ru.yudnikov.bintree
   * Created by igor.yudnikov on 17-May-17.
   */
 class NonEmpty[T](val value: T, val left: Node[T] = new Empty[T], val right: Node[T] = new Empty[T])
-                 (implicit val greater: (T, T) => Boolean = (x: T, y: T) => x.asInstanceOf[Int] < y.asInstanceOf[Int])
+                 (implicit val greater: (T, T) => Boolean)
   extends Node[T] {
   
   override def toString: String = s"{$left $value $right}"
