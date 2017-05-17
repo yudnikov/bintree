@@ -14,4 +14,6 @@ object Empty extends Node {
   override def merge(other: Node): Node = other
   
   override def remove(x: Int): Node = this
+  
+  override def filter(f: (Int) => Boolean): Node = this
 }

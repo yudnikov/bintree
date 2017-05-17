@@ -12,4 +12,6 @@ abstract class Node {
   def merge(other: Node): Node
   
   def remove(x: Int): Node
+  
+  def filter(f: (Int) => Boolean): Node
 }
