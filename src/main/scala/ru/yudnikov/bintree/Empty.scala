@@ -18,4 +18,6 @@ class Empty[T] extends Node[T] {
   override def remove(x: T): Node[T] = this
   
   override def filter(f: (T) => Boolean): Node[T] = this
+  
+  override def foreach(f: (T) => Unit): Unit = {}
 }

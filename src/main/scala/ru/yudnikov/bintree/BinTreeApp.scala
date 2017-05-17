@@ -15,5 +15,6 @@ object BinTreeApp extends App {
   val y = new NonEmpty("mama") include "13" include "zero" include "5"
   val z = x.merge(y)
   println(z)
-  println(z.filter(greaterOrEqual("13", _)))
+  println(z.filter(greaterOrEqual("13", _)).include("zzz"))
+  z.foreach(x => println(s"value is: $x"))
 }

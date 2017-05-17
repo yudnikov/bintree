@@ -4,8 +4,7 @@ package ru.yudnikov.bintree
   * Created by igor.yudnikov on 17-May-17.
   */
 class NonEmpty[T](val value: T, val left: Node[T] = new Empty[T], val right: Node[T] = new Empty[T])
-                 (implicit val greater: (T, T) => Boolean)
-  extends Node[T] {
+                 (implicit val greater: (T, T) => Boolean) extends Node[T] {
   
   override def toString: String = s"{$left $value $right}"
   
@@ -48,5 +47,11 @@ class NonEmpty[T](val value: T, val left: Node[T] = new Empty[T], val right: Nod
       withLeft(left.filter(p)).withRight(right.filter(p))
     else
       left.filter(p).merge(right.filter(p))
+  }
+  
+  override def foreach(f: (T) => Unit): Unit = {
+    left.foreach(f)
+    f(value)
+    right.foreach(f)
   }
 }

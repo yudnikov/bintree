@@ -13,5 +13,7 @@ abstract class Node[T] {
   
   def remove(x: T): Node[T]
   
-  def filter(f: (T) => Boolean): Node[T]
+  def filter(p: (T) => Boolean): Node[T]
+  
+  def foreach(f: (T) => Unit): Unit
 }
