@@ -3,15 +3,15 @@ package ru.yudnikov.bintree
 /**
   * Created by igor.yudnikov on 17-May-17.
   */
-abstract class Node {
+abstract class Node[T] {
 
-  def include(x: Int): NonEmpty
+  def include(x: T): NonEmpty[T]
 
-  def contains(x: Int): Boolean
+  def contains(x: T): Boolean
 
-  def merge(other: Node): Node
+  def merge(other: Node[T]): Node[T]
   
-  def remove(x: Int): Node
+  def remove(x: T): Node[T]
   
-  def filter(f: (Int) => Boolean): Node
+  def filter(f: (T) => Boolean): Node[T]
 }
