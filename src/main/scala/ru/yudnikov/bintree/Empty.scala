@@ -1,15 +1,13 @@
 package ru.yudnikov.bintree
 
-import BinTreeApp._
-
 /**
   * Created by igor.yudnikov on 17-May-17.
   */
-class Empty[T] extends Node[T] {
+class Empty[T](val greater: (String, (T, T) => Boolean)) extends Node[T] {
 
   override def toString: String = "."
 
-  override def include(x: T): NonEmpty[T] = new NonEmpty(x)
+  override def include(x: T): NonEmpty[T] = new NonEmpty(greater)(x)
 
   override def contains(x: T): Boolean = false
 
@@ -20,4 +18,8 @@ class Empty[T] extends Node[T] {
   override def filter(f: (T) => Boolean): Node[T] = this
   
   override def foreach(f: (T) => Unit): Unit = {}
+  
+  override def sortBy(f: (String, (T, T) => Boolean)): Node[T] = this
+  
+  override def withGreaterFunction(f: (String, (T, T) => Boolean)): Node[T] = new Empty(greater)
 }

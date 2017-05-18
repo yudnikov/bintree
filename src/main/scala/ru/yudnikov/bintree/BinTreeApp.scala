@@ -5,16 +5,16 @@ package ru.yudnikov.bintree
   */
 object BinTreeApp extends App {
   
-  //implicit def greater[T]: (T, T) => Boolean = (x, y) => x.asInstanceOf[Int] > y.asInstanceOf[Int]
-  //def greaterOrEqual[T]: (T, T) => Boolean = (x, y) => x.asInstanceOf[Int] >= y.asInstanceOf[Int]
+  def greater[T]: (String, (T, T) => Boolean) =
+    ("(x, y) => x > y", (x, y) => x.asInstanceOf[String] > y.asInstanceOf[String])
+  def longer[T]: (String, (T, T) => Boolean) =
+    ("(x, y) => x.length > y.length", (x, y) => x.asInstanceOf[String].length > y.asInstanceOf[String].length)
   
-  implicit def greater[T]: (T, T) => Boolean = (x, y) => x.asInstanceOf[String] > y.asInstanceOf[String]
-  def greaterOrEqual[T]: (T, T) => Boolean = (x, y) => greater(x, y) | x == y
+  val x = new NonEmpty(greater)("12") include "2" include "45" include "3" include "zzz" include "1" include "100000"
+  println(s"x: $x")
+  val y = x.sortBy(longer)
+  println(s"y = x.sortBy(longer): $y")
+  val z = y.sortBy(greater)
+  println(s"z = y.sortBy(greater): $z")
   
-  val x = new NonEmpty("12") include "2" include "45" include "3"
-  val y = new NonEmpty("mama") include "13" include "zero" include "5"
-  val z = x.merge(y)
-  println(z)
-  println(z.filter(greaterOrEqual("13", _)).include("zzz"))
-  z.foreach(x => println(s"value is: $x"))
 }
