@@ -16,9 +16,7 @@ object BinTreeApp extends App {
   println(s"y: $y")
   val z = y.sortBy(greater)
   println(s"z: $z")
-  
   println(x.collect)
-  
   
   def compareByText[T]: (T, T) => Boolean = _.asInstanceOf[Tweet].text > _.asInstanceOf[Tweet].text
   def compareByText2[T]: (T, T) => Boolean = _.asInstanceOf[Tweet].text.toLowerCase > _.asInstanceOf[Tweet].text.toLowerCase
@@ -29,10 +27,11 @@ object BinTreeApp extends App {
     Tweet("ABC is the alphabet", 13),
     Tweet("getthereveryfastindeed", 1),
     Tweet("ZZ Top", 2),
-    Tweet("AAA! Help", 999)
+    Tweet("AAA! Help", 999),
+    Tweet("B! Means business", 1),
+    Tweet("C! Means Chicks", 2)
   )
   
-  //val t = new NonEmpty[Tweet](compareByText)(tweets.head) include tweets(1) include tweets(2) include tweets(3) include tweets(4)
   val t = new NonEmpty(compareByRetweets)(tweets.head).include(tweets.tail: _*)
   println(t)
   println(t.sortBy(compareByText2))

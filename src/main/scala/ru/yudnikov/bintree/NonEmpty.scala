@@ -1,6 +1,6 @@
 package ru.yudnikov.bintree
 
-import ru.yudnikov.bintree.tweet.Tweet
+import scala.util.Random
 
 /**
   * Created by igor.yudnikov on 17-May-17.
@@ -8,12 +8,6 @@ import ru.yudnikov.bintree.tweet.Tweet
 class NonEmpty[T](val compare: (T, T) => Boolean)
                  (val value: T, val left: Node[T] = new Empty[T](compare), val right: Node[T] = new Empty[T](compare))
   extends Node[T] {
-  
-  /*
-  def this(value: T)(implicit f: (T, T) => Boolean) {
-    this(f)(value)
-  }
-  */
   
   override def toString: String = s"{$left $value $right}"
   
@@ -69,10 +63,8 @@ class NonEmpty[T](val compare: (T, T) => Boolean)
   }
   
   override def sortBy(f: (T, T) => Boolean): Node[T] = {
-    val elements = collect
-    var res = new NonEmpty[T](f)(elements.head)
-    for (e <- elements.tail) res = res.include(e)
-    res
+    val elements = Random.shuffle(collect)
+    new NonEmpty[T](f)(elements.head).include(elements.tail: _*)
   }
   
   override def collect: List[T] = List(left.collect, List(value), right.collect).flatten
