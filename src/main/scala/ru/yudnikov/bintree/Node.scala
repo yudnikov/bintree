@@ -5,13 +5,17 @@ package ru.yudnikov.bintree
   */
 abstract class Node[T] {
   
-  type GreaterFunction = (String, (T, T) => Boolean)
+  type CompareFunction = (T, T) => Boolean
   
-  val greater: GreaterFunction
+  val compare: CompareFunction
   
-  def withGreaterFunction(f: GreaterFunction): Node[T]
+  def collect: List[T]
+  
+  def withGreaterFunction(f: CompareFunction): Node[T]
 
   def include(x: T): NonEmpty[T]
+  
+  def include(x: T*): NonEmpty[T]
 
   def contains(x: T): Boolean
 
@@ -23,5 +27,5 @@ abstract class Node[T] {
   
   def foreach(f: (T) => Unit): Unit
   
-  def sortBy(f: GreaterFunction): Node[T]
+  def sortBy(f: CompareFunction): Node[T]
 }

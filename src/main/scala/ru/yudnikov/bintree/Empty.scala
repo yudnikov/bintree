@@ -3,11 +3,11 @@ package ru.yudnikov.bintree
 /**
   * Created by igor.yudnikov on 17-May-17.
   */
-class Empty[T](val greater: (String, (T, T) => Boolean)) extends Node[T] {
+class Empty[T](val compare: (T, T) => Boolean) extends Node[T] {
 
   override def toString: String = "."
 
-  override def include(x: T): NonEmpty[T] = new NonEmpty(greater)(x)
+  override def include(x: T): NonEmpty[T] = new NonEmpty(compare)(x)
 
   override def contains(x: T): Boolean = false
 
@@ -19,7 +19,11 @@ class Empty[T](val greater: (String, (T, T) => Boolean)) extends Node[T] {
   
   override def foreach(f: (T) => Unit): Unit = {}
   
-  override def sortBy(f: (String, (T, T) => Boolean)): Node[T] = this
+  override def sortBy(f: (T, T) => Boolean): Node[T] = this
   
-  override def withGreaterFunction(f: (String, (T, T) => Boolean)): Node[T] = new Empty(greater)
+  override def withGreaterFunction(f: (T, T) => Boolean): Node[T] = new Empty(compare)
+  
+  override def collect: List[T] = List()
+  
+  override def include(x: T*): NonEmpty[T] = new NonEmpty[T](compare)(x.head).include(x.tail: _*)
 }
