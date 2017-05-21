@@ -1,6 +1,7 @@
-package ru.yudnikov.bintree
+package ru.yudnikov
 
-import ru.yudnikov.bintree.tweet.Tweet
+import ru.yudnikov.bintree.NonEmpty
+import ru.yudnikov.tweet.Tweet
 
 /**
   * Created by igor.yudnikov on 17-May-17.

@@ -1,4 +1,4 @@
-package ru.yudnikov.bintree.tweet
+package ru.yudnikov.tweet
 
 /**
   * Created by Don on 17.05.2017.
