@@ -47,8 +47,7 @@ class NonEmpty[T](val compare: (T, T) => Boolean)
     case tail: List[T] => include(x.head).include(tail: _*)
   }
   
-  override def merge(other: Node[T]): Node[T] =
-    left.merge(right).merge(other).include(value)
+  override def merge(other: Node[T]): Node[T] = left.merge(right).merge(other).include(value)
   
   override def remove(x: T): Node[T] = {
     if (!compare(x, value))
